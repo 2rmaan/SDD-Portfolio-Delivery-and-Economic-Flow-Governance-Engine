@@ -1,0 +1,27 @@
+work_item_id,title,priority,business_value,team_id,state,state_type,entered_at,exited_at
+WI-001,Deploy Auth Service,P0,90,team-alpha,Backlog,wait,2026-01-01T08:00:00Z,2026-01-06T08:00:00Z
+WI-001,Deploy Auth Service,P0,90,team-alpha,In Progress,active,2026-01-06T08:00:00Z,2026-01-11T08:00:00Z
+WI-001,Deploy Auth Service,P0,90,team-alpha,Waiting for Review,wait,2026-01-11T08:00:00Z,2026-01-15T08:00:00Z
+WI-001,Deploy Auth Service,P0,90,team-alpha,Completed,completed,2026-01-15T08:00:00Z,
+WI-002,Refactor Pipeline,P1,75,team-alpha,Backlog,wait,2026-01-01T08:00:00Z,2026-01-05T08:00:00Z
+WI-002,Refactor Pipeline,P1,75,team-alpha,In Progress,active,2026-01-05T08:00:00Z,2026-01-08T08:00:00Z
+WI-002,Refactor Pipeline,P1,75,team-alpha,Blocked,wait,2026-01-08T08:00:00Z,2026-01-11T08:00:00Z
+WI-002,Refactor Pipeline,P1,75,team-alpha,In Progress,active,2026-01-11T08:00:00Z,2026-01-13T08:00:00Z
+WI-002,Refactor Pipeline,P1,75,team-alpha,Completed,completed,2026-01-13T08:00:00Z,
+WI-003,Setup Monitoring,Medium,,team-beta,Backlog,wait,2026-01-01T08:00:00Z,2026-01-05T08:00:00Z
+WI-003,Setup Monitoring,Medium,,team-beta,In Progress,active,2026-01-05T08:00:00Z,2026-01-10T08:00:00Z
+WI-003,Setup Monitoring,Medium,,team-beta,Waiting for Approval,wait,2026-01-10T08:00:00Z,2026-01-13T08:00:00Z
+WI-003,Setup Monitoring,Medium,,team-beta,Completed,completed,2026-01-13T08:00:00Z,
+WI-004,Upgrade Database,P1,,team-beta,Backlog,wait,2026-01-01T08:00:00Z,2026-01-06T08:00:00Z
+WI-004,Upgrade Database,P1,,team-beta,In Progress,active,2026-01-06T08:00:00Z,2026-01-09T08:00:00Z
+WI-004,Upgrade Database,P1,,team-beta,Blocked,wait,2026-01-09T08:00:00Z,2026-01-14T08:00:00Z
+WI-004,Upgrade Database,P1,,team-beta,In Progress,active,2026-01-14T08:00:00Z,2026-01-16T08:00:00Z
+WI-004,Upgrade Database,P1,,team-beta,Completed,completed,2026-01-16T08:00:00Z,
+WI-005,Migrate DB Schema,Medium,,team-gamma,Backlog,wait,2026-01-05T08:00:00Z,2026-01-07T08:00:00Z
+WI-005,Migrate DB Schema,Medium,,team-gamma,In Progress,active,2026-01-07T08:00:00Z,2026-01-13T08:00:00Z
+WI-005,Migrate DB Schema,Medium,,team-gamma,Blocked,wait,2026-01-13T08:00:00Z,2026-01-15T08:00:00Z
+WI-005,Migrate DB Schema,Medium,,team-gamma,Completed,completed,2026-01-15T08:00:00Z,
+WI-006,Add User Dashboard,P1,60,team-gamma,Backlog,wait,2026-01-03T08:00:00Z,2026-01-05T08:00:00Z
+WI-006,Add User Dashboard,P1,60,team-gamma,In Progress,active,2026-01-05T08:00:00Z,2026-01-12T08:00:00Z
+WI-006,Add User Dashboard,P1,60,team-gamma,Blocked,wait,2026-01-12T08:00:00Z,2026-01-14T08:00:00Z
+WI-006,Add User Dashboard,P1,60,team-gamma,Completed,completed,2026-01-14T08:00:00Z,

@@ -1,0 +1,117 @@
+{
+  "id": "portfolio-large",
+  "name": "Large Enterprise Portfolio",
+  "currency": "USD",
+  "workstreams": [
+    {
+      "id": "ws-01", "name": "Cloud Infrastructure",
+      "flow_efficiency_threshold": 0.45,
+      "teams": [
+        { "id": "team-01", "name": "Team 01", "resource_daily_rate": 2500.00 },
+        { "id": "team-02", "name": "Team 02", "resource_daily_rate": 3000.00 },
+        { "id": "team-03", "name": "Team 03", "resource_daily_rate": 1800.00 },
+        { "id": "team-04", "name": "Team 04", "resource_daily_rate": 4000.00 },
+        { "id": "team-05", "name": "Team 05", "resource_daily_rate": 2200.00 }
+      ]
+    },
+    {
+      "id": "ws-02", "name": "Product Engineering",
+      "flow_efficiency_threshold": 0.50,
+      "teams": [
+        { "id": "team-06", "name": "Team 06", "resource_daily_rate": 2800.00 },
+        { "id": "team-07", "name": "Team 07", "resource_daily_rate": 3200.00 },
+        { "id": "team-08", "name": "Team 08", "resource_daily_rate": 1500.00 },
+        { "id": "team-09", "name": "Team 09", "resource_daily_rate": 3800.00 },
+        { "id": "team-10", "name": "Team 10", "resource_daily_rate": 2600.00 }
+      ]
+    },
+    {
+      "id": "ws-03", "name": "Data & Analytics",
+      "flow_efficiency_threshold": 0.40,
+      "teams": [
+        { "id": "team-11", "name": "Team 11", "resource_daily_rate": 3500.00 },
+        { "id": "team-12", "name": "Team 12", "resource_daily_rate": 2900.00 },
+        { "id": "team-13", "name": "Team 13", "resource_daily_rate": 1600.00 },
+        { "id": "team-14", "name": "Team 14", "resource_daily_rate": 3700.00 },
+        { "id": "team-15", "name": "Team 15", "resource_daily_rate": 2100.00 }
+      ]
+    },
+    {
+      "id": "ws-04", "name": "Security & Compliance",
+      "flow_efficiency_threshold": 0.45,
+      "teams": [
+        { "id": "team-16", "name": "Team 16", "resource_daily_rate": 4000.00 },
+        { "id": "team-17", "name": "Team 17", "resource_daily_rate": 3300.00 },
+        { "id": "team-18", "name": "Team 18", "resource_daily_rate": 2700.00 },
+        { "id": "team-19", "name": "Team 19", "resource_daily_rate": 1900.00 },
+        { "id": "team-20", "name": "Team 20", "resource_daily_rate": 2400.00 }
+      ]
+    },
+    {
+      "id": "ws-05", "name": "Mobile & Frontend",
+      "flow_efficiency_threshold": 0.50,
+      "teams": [
+        { "id": "team-21", "name": "Team 21", "resource_daily_rate": 2500.00 },
+        { "id": "team-22", "name": "Team 22", "resource_daily_rate": 3100.00 },
+        { "id": "team-23", "name": "Team 23", "resource_daily_rate": 1700.00 },
+        { "id": "team-24", "name": "Team 24", "resource_daily_rate": 3900.00 },
+        { "id": "team-25", "name": "Team 25", "resource_daily_rate": 2300.00 }
+      ]
+    },
+    {
+      "id": "ws-06", "name": "DevOps & Platform",
+      "flow_efficiency_threshold": 0.45,
+      "teams": [
+        { "id": "team-26", "name": "Team 26", "resource_daily_rate": 3600.00 },
+        { "id": "team-27", "name": "Team 27", "resource_daily_rate": 2800.00 },
+        { "id": "team-28", "name": "Team 28", "resource_daily_rate": 1500.00 },
+        { "id": "team-29", "name": "Team 29", "resource_daily_rate": 4000.00 },
+        { "id": "team-30", "name": "Team 30", "resource_daily_rate": 2000.00 }
+      ]
+    },
+    {
+      "id": "ws-07", "name": "API & Integration",
+      "flow_efficiency_threshold": 0.40,
+      "teams": [
+        { "id": "team-31", "name": "Team 31", "resource_daily_rate": 2700.00 },
+        { "id": "team-32", "name": "Team 32", "resource_daily_rate": 3400.00 },
+        { "id": "team-33", "name": "Team 33", "resource_daily_rate": 1800.00 },
+        { "id": "team-34", "name": "Team 34", "resource_daily_rate": 3200.00 },
+        { "id": "team-35", "name": "Team 35", "resource_daily_rate": 2600.00 }
+      ]
+    },
+    {
+      "id": "ws-08", "name": "QA & Testing",
+      "flow_efficiency_threshold": 0.50,
+      "teams": [
+        { "id": "team-36", "name": "Team 36", "resource_daily_rate": 2200.00 },
+        { "id": "team-37", "name": "Team 37", "resource_daily_rate": 3000.00 },
+        { "id": "team-38", "name": "Team 38", "resource_daily_rate": 1600.00 },
+        { "id": "team-39", "name": "Team 39", "resource_daily_rate": 3800.00 },
+        { "id": "team-40", "name": "Team 40", "resource_daily_rate": 2500.00 }
+      ]
+    },
+    {
+      "id": "ws-09", "name": "Customer Success",
+      "flow_efficiency_threshold": 0.45,
+      "teams": [
+        { "id": "team-41", "name": "Team 41", "resource_daily_rate": 2100.00 },
+        { "id": "team-42", "name": "Team 42", "resource_daily_rate": 2900.00 },
+        { "id": "team-43", "name": "Team 43", "resource_daily_rate": 1700.00 },
+        { "id": "team-44", "name": "Team 44", "resource_daily_rate": 3700.00 },
+        { "id": "team-45", "name": "Team 45", "resource_daily_rate": 2400.00 }
+      ]
+    },
+    {
+      "id": "ws-10", "name": "Finance & Billing",
+      "flow_efficiency_threshold": 0.40,
+      "teams": [
+        { "id": "team-46", "name": "Team 46", "resource_daily_rate": 3300.00 },
+        { "id": "team-47", "name": "Team 47", "resource_daily_rate": 2700.00 },
+        { "id": "team-48", "name": "Team 48", "resource_daily_rate": 1500.00 },
+        { "id": "team-49", "name": "Team 49", "resource_daily_rate": 4000.00 },
+        { "id": "team-50", "name": "Team 50", "resource_daily_rate": 2200.00 }
+      ]
+    }
+  ]
+}

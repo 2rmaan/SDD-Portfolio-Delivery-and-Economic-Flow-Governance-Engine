@@ -1,0 +1,24 @@
+{
+  "id": "portfolio-2026",
+  "name": "Enterprise Software Portfolio",
+  "currency": "USD",
+  "workstreams": [
+    {
+      "id": "ws-cloud",
+      "name": "Cloud Infrastructure",
+      "flow_efficiency_threshold": 0.45,
+      "teams": [
+        { "id": "team-alpha", "name": "Alpha Team", "resource_daily_rate": 2500.00 },
+        { "id": "team-beta",  "name": "Beta Team",  "resource_daily_rate": 3000.00 }
+      ]
+    },
+    {
+      "id": "ws-product",
+      "name": "Product Engineering",
+      "flow_efficiency_threshold": 0.50,
+      "teams": [
+        { "id": "team-gamma", "name": "Gamma Team", "resource_daily_rate": 2800.00 }
+      ]
+    }
+  ]
+}
