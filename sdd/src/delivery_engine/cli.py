@@ -9,8 +9,15 @@ def main() -> None:
         prog="delivery-engine",
         description="Portfolio Delivery & Economic Flow Governance Engine",
     )
-    parser.add_argument("--portfolio", required=True, help="Path to portfolio.json")
-    parser.add_argument("--events", required=True, help="Path to work_item_events.csv")
+    # Flat-CSV mode (single self-contained file)
+    parser.add_argument(
+        "--flat-csv",
+        help="Path to a flat delivery CSV (ticket_id, workstream, team, …). "
+             "Builds the portfolio automatically; --portfolio and --events are not needed.",
+    )
+    # Standard mode
+    parser.add_argument("--portfolio", help="Path to portfolio.json")
+    parser.add_argument("--events", help="Path to work_item_events.csv")
     parser.add_argument("--output-dir", required=True, help="Directory for output files")
     args = parser.parse_args()
 
@@ -19,9 +26,14 @@ def main() -> None:
     from delivery_engine.io.loader import DataLoader
     import os
 
-    portfolio = DataLoader.load_portfolio(args.portfolio)
-    work_items = DataLoader.load_work_items(args.events, portfolio)
-    portfolio.work_items = work_items
+    if args.flat_csv:
+        portfolio, _ = DataLoader.load_from_flat_csv(args.flat_csv)
+    elif args.portfolio and args.events:
+        portfolio = DataLoader.load_portfolio(args.portfolio)
+        work_items = DataLoader.load_work_items(args.events, portfolio)
+        portfolio.work_items = work_items
+    else:
+        parser.error("Provide either --flat-csv or both --portfolio and --events.")
 
     engine = DeliveryAnalyticsEngine(portfolio)
     report = engine.calculate_all()

@@ -139,6 +139,98 @@ class DataLoader:
         return portfolio
 
     @staticmethod
+    def load_from_flat_csv(csv_path: str) -> tuple[Portfolio, list[WorkItem]]:
+        """Load a self-contained flat CSV (ticket_id, workstream, team, priority,
+        business_value_usd, resource_daily_rate, created_at, started_at, completed_at)
+        and return a fully constructed (Portfolio, work_items) pair.
+
+        State transitions are inferred from the three date columns:
+          created_at → started_at  : wait  ("In Queue")
+          started_at → completed_at: active ("In Progress")
+          completed_at             : completed ("Done")
+        """
+        df = pl.read_csv(csv_path, null_values=["", "null", "NULL", "None"])
+
+        required = {"ticket_id", "workstream", "team", "priority",
+                    "resource_daily_rate", "created_at", "started_at", "completed_at"}
+        missing = required - set(df.columns)
+        if missing:
+            raise ValueError(f"Flat CSV missing required columns: {missing}")
+
+        # ── Build Portfolio structure ─────────────────────────────────────
+        team_meta: dict[str, dict] = {}
+        for row in df.to_dicts():
+            team_name = str(row["team"])
+            if team_name not in team_meta:
+                team_meta[team_name] = {
+                    "workstream": str(row["workstream"]),
+                    "resource_daily_rate": float(row["resource_daily_rate"]),
+                }
+
+        ws_to_teams: dict[str, list[str]] = {}
+        for team_name, meta in team_meta.items():
+            ws_to_teams.setdefault(meta["workstream"], []).append(team_name)
+
+        workstreams: list[Workstream] = []
+        teams_all: list[Team] = []
+        for ws_name, team_names in ws_to_teams.items():
+            ws_id = ws_name.lower().replace(" ", "_")
+            team_ids: list[str] = []
+            for team_name in team_names:
+                team_id = team_name.lower()
+                teams_all.append(Team(
+                    id=team_id,
+                    name=team_name,
+                    workstream_id=ws_id,
+                    resource_daily_rate=team_meta[team_name]["resource_daily_rate"],
+                ))
+                team_ids.append(team_id)
+            workstreams.append(Workstream(
+                id=ws_id,
+                name=ws_name,
+                portfolio_id="portfolio-flat",
+                flow_efficiency_threshold=0.45,
+                team_ids=team_ids,
+            ))
+
+        portfolio = Portfolio(
+            id="portfolio-flat",
+            name="Strategic Delivery Portfolio",
+            currency="USD",
+            workstreams=workstreams,
+        )
+        portfolio.teams = teams_all
+
+        # ── Build WorkItems with inferred state transitions ───────────────
+        work_items: list[WorkItem] = []
+        for row in df.to_dicts():
+            ticket_id = str(row["ticket_id"])
+            team_id = str(row["team"]).lower()
+            priority = str(row["priority"])
+            bv_raw = row.get("business_value_usd")
+            business_value: float | None = float(bv_raw) if bv_raw is not None else None
+
+            created_at = datetime.fromisoformat(str(row["created_at"])).replace(tzinfo=None)
+            started_at = datetime.fromisoformat(str(row["started_at"])).replace(tzinfo=None)
+            completed_at = datetime.fromisoformat(str(row["completed_at"])).replace(tzinfo=None)
+
+            work_items.append(WorkItem(
+                id=ticket_id,
+                title=ticket_id,
+                priority=priority,
+                team_id=team_id,
+                state_transitions=[
+                    StateTransition(ticket_id, "In Queue",    "wait",      created_at,   started_at),
+                    StateTransition(ticket_id, "In Progress", "active",    started_at,   completed_at),
+                    StateTransition(ticket_id, "Done",        "completed", completed_at, None),
+                ],
+                business_value=business_value,
+            ))
+
+        portfolio.work_items = work_items
+        return portfolio, work_items
+
+    @staticmethod
     def load_work_items(events_csv_path: str, portfolio: Portfolio) -> list[WorkItem]:
         df = pl.read_csv(events_csv_path, null_values=["", "null", "NULL", "None"])
 
