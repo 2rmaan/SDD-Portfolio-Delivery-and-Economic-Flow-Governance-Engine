@@ -1,0 +1,50 @@
+name: Deploy Delivery Dashboard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sdd/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        working-directory: sdd
+        run: pip install -e .
+
+      - name: Generate dashboard
+        working-directory: sdd
+        run: |
+          python3 -m delivery_engine.cli \
+            --flat-csv tests/fixtures/strategic_delivery_data.csv \
+            --output-dir _site/
+          mv _site/dashboard.html _site/index.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: sdd/_site/
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
