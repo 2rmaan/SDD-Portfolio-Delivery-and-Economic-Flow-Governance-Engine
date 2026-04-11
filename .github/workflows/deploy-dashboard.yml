@@ -31,21 +31,14 @@ jobs:
           python3 -m delivery_engine.cli \
             --flat-csv tests/fixtures/strategic_delivery_data.csv \
             --output-dir _site/
-          mv _site/dashboard.html _site/index.html
 
-      - name: Deploy to gh-pages branch
+      - name: Commit dashboard to docs/
         run: |
+          mkdir -p docs
+          cp sdd/_site/dashboard.html docs/index.html
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-
-          # Create or reset gh-pages branch
-          git fetch origin gh-pages 2>/dev/null || true
-          git checkout --orphan gh-pages-new
-          git rm -rf . --quiet
-
-          cp sdd/_site/index.html index.html
-
-          git add index.html
-          git commit -m "Deploy dashboard from ${{ github.sha }}"
-          git push origin gh-pages-new:gh-pages --force
+          git add docs/index.html
+          git diff --staged --quiet && echo "No changes" && exit 0
+          git commit -m "Update dashboard [skip ci]"
+          git push origin main
